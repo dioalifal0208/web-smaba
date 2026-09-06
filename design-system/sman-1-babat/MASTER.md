@@ -90,7 +90,7 @@ Approved patterns:
 - **Announcement list:** high-priority public notices with date range, attachment cue, and importance label.
 - **Agenda list:** date-led event rows with time, location, category, and status text.
 - **Service link:** digital service item with name, description, status, access type, and external-link affordance.
-- **Section band:** full-width background separation using white, soft blue, or neutral surface.
+- **Section band:** full-width background separation using warm ivory, white, primary soft, or muted neutral surface.
 - **Public information table/list:** documents, service directories, staff lists, contact details, and official metadata.
 
 Pattern rules:
@@ -105,43 +105,47 @@ Pattern rules:
 
 ## 4. Color Tokens
 
-Use blue, white, neutral, and limited gold/yellow accent as required by the PRD. Gold is an institutional accent, not a conversion color. No decorative gradients.
+Use forest green, warm neutral, white surface, and limited muted gold accent. The approved direction is natural, institutional, calm, credible, and inspired by the dominant green in the school logo. Hex values remain provisional until the official high-resolution or vector logo is available. No decorative gradients.
 
 | Role | Hex | CSS Variable | Usage |
 |---|---:|---|---|
-| Primary | `#1D4E89` | `--color-primary` | Header, active nav, primary links, official identity |
-| On Primary | `#FFFFFF` | `--color-on-primary` | Text/icons on primary blue |
-| Primary Dark | `#12355B` | `--color-primary-dark` | Footer, deep institutional bands |
-| Primary Soft | `#E8F1FA` | `--color-primary-soft` | Soft blue section backgrounds and selected states |
-| Secondary | `#2F6FA8` | `--color-secondary` | Secondary links, subtle navigation emphasis |
-| On Secondary | `#FFFFFF` | `--color-on-secondary` | Text/icons on secondary blue |
-| Accent | `#B88900` | `--color-accent` | Limited gold underline, markers, official highlights |
-| Accent Soft | `#FFF4CC` | `--color-accent-soft` | Important announcement background, low-emphasis highlight |
-| Background | `#FFFFFF` | `--color-background` | Main page background |
-| Surface | `#F8FAFC` | `--color-surface` | Quiet section bands |
-| Surface Raised | `#FFFFFF` | `--color-surface-raised` | Dropdowns, panels, repeated framed items |
-| Text Strong | `#0F172A` | `--color-text-strong` | Page titles, section headings |
-| Text | `#334155` | `--color-text` | Body copy |
-| Text Muted | `#475569` | `--color-text-muted` | Metadata and supporting copy |
-| Border | `#D9E2EC` | `--color-border` | Dividers, input borders, table lines |
-| Border Strong | `#9FB2C7` | `--color-border-strong` | Structured tables, focus-adjacent separators |
-| Success | `#166534` | `--color-success` | Active/published status with text label |
-| Success Soft | `#DCFCE7` | `--color-success-soft` | Success status background |
+| Primary | `#245C3A` | `--color-primary` | Header, primary button, active nav, primary links, official identity, focus ring |
+| On Primary | `#FFFFFF` | `--color-on-primary` | Text/icons on primary forest green |
+| Primary Dark | `#183F29` | `--color-primary-dark` | Footer, deep institutional bands, high-contrast institutional emphasis |
+| Primary Soft | `#EAF2E7` | `--color-primary-soft` | Soft green section backgrounds and selected states |
+| Secondary | `#4F7C37` | `--color-secondary` | Supporting accent, active status, category details, small visual elements |
+| Logo Green | `#82BD24` | `--color-logo-green` | Small logo-inspired accent only; not for large backgrounds, body text, or primary buttons |
+| Accent | `#C5A62D` | `--color-accent` | Limited muted-gold underline, markers, dividers, badges, official highlights |
+| Accent Soft | `#F7F0D2` | `--color-accent-soft` | Important announcement background and low-emphasis institutional highlight |
+| Background | `#FAF9F4` | `--color-background` | Warm ivory main page background |
+| Surface | `#FFFFFF` | `--color-surface` | Reading areas, panels, dropdowns, repeated framed items |
+| Surface Muted | `#F1F5EE` | `--color-surface-muted` | Quiet section bands and neutral grouped surfaces |
+| Text Strong | `#1B2820` | `--color-text-strong` | Page titles, section headings, text on muted-gold accents |
+| Text | `#35443A` | `--color-text` | Body copy |
+| Text Muted | `#5D6B61` | `--color-text-muted` | Metadata and supporting copy |
+| Border | `#D5DFD2` | `--color-border` | Dividers, input borders, table lines |
+| Border Strong | `#AABAAA` | `--color-border-strong` | Structured tables, focus-adjacent separators |
+| Success | `#4F7C37` | `--color-success` | Active/published status with text label |
+| Success Soft | `#EAF2E7` | `--color-success-soft` | Success status background |
 | Warning | `#92400E` | `--color-warning` | Maintenance/important warning with text label |
-| Warning Soft | `#FEF3C7` | `--color-warning-soft` | Warning status background |
+| Warning Soft | `#F7F0D2` | `--color-warning-soft` | Warning status background |
 | Error | `#B91C1C` | `--color-error` | Errors and destructive actions |
 | Error Soft | `#FEE2E2` | `--color-error-soft` | Error status background |
-| Information | `#1D4E89` | `--color-info` | Informational status and help text |
-| Information Soft | `#E8F1FA` | `--color-info-soft` | Informational status background |
-| Focus Ring | `#1D4E89` | `--color-focus-ring` | Keyboard focus outline/ring |
+| Information | `#245C3A` | `--color-info` | Informational status and help text |
+| Information Soft | `#EAF2E7` | `--color-info-soft` | Informational status background |
+| Focus Ring | `#245C3A` | `--color-focus-ring` | Keyboard focus outline/ring |
 
 Contrast rules:
 
-- `--color-text-strong`, `--color-text`, and `--color-text-muted` must meet WCAG AA on `--color-background`, `--color-surface`, and `--color-surface-raised`.
-- Text on primary, secondary, success, warning, error, and info colors must use an approved high-contrast foreground token.
+- `--color-text-strong`, `--color-text`, and `--color-text-muted` must meet WCAG AA on `--color-background`, `--color-surface`, and `--color-surface-muted`.
+- Text on primary, success, warning, error, and info colors must use an approved high-contrast foreground token.
+- Do not use white text on muted gold. Use `--color-text-strong` on `--color-accent` or `--color-accent-soft`.
+- `--color-logo-green` is only for small accents and must not be used when contrast fails WCAG AA.
+- Red from the logo is not a brand interface color; use red only for semantic error or danger.
+- Dark logo blue remains part of the logo asset only and is not a primary or secondary UI color.
 - Non-text UI boundaries and meaningful icons must meet at least 3:1 contrast.
 - Status cannot rely on color alone; include status text.
-- Do not use purple/pink gradients, orange conversion accents, decorative gradients, glow colors, or one-note blue-only decoration.
+- Do not use purple/pink gradients, orange conversion accents, decorative gradients, glow colors, or one-note technology-product decoration.
 
 ---
 
@@ -273,8 +277,8 @@ Shadow tokens:
 | Token | Value | Usage |
 |---|---|---|
 | `--shadow-none` | `none` | Default |
-| `--shadow-xs` | `0 1px 2px rgba(15, 23, 42, 0.04)` | Header or subtle raised surface |
-| `--shadow-sm` | `0 4px 12px rgba(15, 23, 42, 0.06)` | Dropdowns, occasional feature media |
+| `--shadow-xs` | `0 1px 2px rgba(27, 40, 32, 0.04)` | Header or subtle raised surface |
+| `--shadow-sm` | `0 4px 12px rgba(27, 40, 32, 0.06)` | Dropdowns, occasional feature media |
 
 Rules:
 
@@ -374,9 +378,9 @@ Rules:
 
 ### Buttons And Links
 
-- Primary button/link: blue fill, white text, practical navigation only.
+- Primary button/link: forest-green fill, white text, practical navigation only.
 - Secondary button/link: border or text style.
-- Accent/gold is for emphasis and markers, not primary CTA fill.
+- Muted-gold accent is for emphasis and markers, not primary CTA fill.
 - Link text should describe destination.
 - Use underline or clear state where inline links appear inside prose.
 
@@ -536,7 +540,7 @@ Before any public UI is considered ready:
 
 - [ ] Matches the official school portal purpose from `docs/PRD.md`.
 - [ ] Does not look like SaaS, startup, or commercial landing page.
-- [ ] Uses blue, white, neutral, and limited gold accent.
+- [ ] Uses forest-green, warm-neutral, white surface, and limited muted-gold accent.
 - [ ] Uses authentic school media or clearly marked development placeholders.
 - [ ] No fake statistics, fake testimonials, or invented school claims.
 - [ ] Homepage follows the public dashboard information order.

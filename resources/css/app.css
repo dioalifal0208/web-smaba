@@ -1,3 +1,220 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =============================================================================
+   DESIGN TOKENS — SMA Negeri 1 Babat
+   Sumber: design-system/sman-1-babat/MASTER.md
+   Satu-satunya sumber nilai. Tailwind config mereferensikan variabel ini.
+   Tidak ada raw hex di tempat lain.
+   ============================================================================= */
+
+@layer base {
+
+    :root {
+        /* -------------------------------------------------------------------
+           Warna — MASTER.md §4
+           Palet: forest-green, warm-neutral, muted-gold.
+           Nilai bersifat provisional sampai logo resmi tersedia (DESIGN.md §12).
+           ------------------------------------------------------------------- */
+
+        /* Primary — forest green */
+        --color-primary:      #245C3A;
+        --color-on-primary:   #FFFFFF;
+        --color-primary-dark: #183F29;
+        --color-primary-soft: #EAF2E7;
+
+        /* Secondary — medium green */
+        --color-secondary:    #4F7C37;
+
+        /* Logo green — hanya untuk aksen kecil, bukan background besar */
+        --color-logo-green:   #82BD24;
+
+        /* Accent — muted gold */
+        --color-accent:       #C5A62D;
+        --color-accent-soft:  #F7F0D2;
+
+        /* Surfaces — warm neutral */
+        --color-background:   #FAF9F4;
+        --color-surface:      #FFFFFF;
+        --color-surface-muted:#F1F5EE;
+
+        /* Text */
+        --color-text-strong:  #1B2820;
+        --color-text:         #35443A;
+        --color-text-muted:   #5D6B61;
+
+        /* Borders */
+        --color-border:       #D5DFD2;
+        --color-border-strong:#AABAAA;
+
+        /* Semantic status */
+        --color-success:      #4F7C37;
+        --color-success-soft: #EAF2E7;
+        --color-warning:      #92400E;
+        --color-warning-soft: #F7F0D2;
+        --color-error:        #B91C1C;
+        --color-error-soft:   #FEE2E2;
+        --color-info:         #245C3A;
+        --color-info-soft:    #EAF2E7;
+
+        /* Accessibility */
+        --color-focus-ring:   #245C3A;
+
+        /* -------------------------------------------------------------------
+           Tipografi — MASTER.md §5
+           Font eksternal belum dimuat di Fase 1.
+           Browser menggunakan system fallback.
+           ------------------------------------------------------------------- */
+        --font-sans: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui,
+            -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+        /* -------------------------------------------------------------------
+           Spacing — MASTER.md §6
+           CSS variables untuk penggunaan di custom CSS.
+           Tailwind spacing bawaan (skala 4px) tidak diubah.
+           ------------------------------------------------------------------- */
+        --space-0:  0;
+        --space-1:  4px;
+        --space-2:  8px;
+        --space-3:  12px;
+        --space-4:  16px;
+        --space-5:  20px;
+        --space-6:  24px;
+        --space-8:  32px;
+        --space-10: 40px;
+        --space-12: 48px;
+        --space-16: 64px;
+        --space-20: 80px;
+
+        /* -------------------------------------------------------------------
+           Container — MASTER.md §6
+           ------------------------------------------------------------------- */
+        --container-page:    80rem;   /* 1280px */
+        --container-content: 48rem;   /* 768px  */
+        --container-narrow:  42rem;   /* 672px  */
+        --container-wide:    90rem;   /* 1440px */
+        --gutter-mobile:     16px;
+        --gutter-tablet:     24px;
+        --gutter-desktop:    32px;
+
+        /* -------------------------------------------------------------------
+           Border — MASTER.md §7
+           ------------------------------------------------------------------- */
+        --border-width-default: 1px;
+        --border-width-strong:  2px;
+
+        /* -------------------------------------------------------------------
+           Radius — MASTER.md §7
+           Maksimal 8px sesuai DESIGN.md §15.
+           ------------------------------------------------------------------- */
+        --radius-none: 0;
+        --radius-sm:   4px;
+        --radius-md:   6px;
+        --radius-lg:   8px;
+
+        /* -------------------------------------------------------------------
+           Shadow — MASTER.md §7
+           Sangat minimal. Border dan background difference diutamakan.
+           ------------------------------------------------------------------- */
+        --shadow-none: none;
+        --shadow-xs:   0 1px 2px rgba(27, 40, 32, 0.04);
+        --shadow-sm:   0 4px 12px rgba(27, 40, 32, 0.06);
+
+        /* -------------------------------------------------------------------
+           Z-Index Layer — MASTER.md §7
+           ------------------------------------------------------------------- */
+        --z-base:      0;
+        --z-raised:    10;
+        --z-header:    30;
+        --z-dropdown:  50;
+        --z-modal:     100;
+        --z-skip-link: 110;
+
+        /* -------------------------------------------------------------------
+           Transition & Motion — MASTER.md §8
+           Motion minimal dan fungsional. Digunakan untuk hover/focus saja.
+           ------------------------------------------------------------------- */
+        --duration-fast: 120ms;
+        --duration-base: 180ms;
+        --duration-slow: 240ms;
+        --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+        /* -------------------------------------------------------------------
+           Interaction — MASTER.md §8
+           ------------------------------------------------------------------- */
+        --target-touch:      44px;
+        --focus-ring-width:  3px;
+        --focus-ring-offset: 2px;
+    }
+
+
+    /* =========================================================================
+       BASE STYLES
+       ========================================================================= */
+
+    /* Body — DESIGN.md §13, MASTER.md §5
+       Font minimal 16px. Warna dari design token. */
+    body {
+        font-family: var(--font-sans);
+        font-size: 1rem;        /* 16px — --text-base */
+        line-height: 1.625;     /* 26px — MASTER.md type scale */
+        color: var(--color-text);
+        background-color: var(--color-background);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Focus-visible — DESIGN.md §32, MASTER.md §8
+       Ring forest-green untuk aksesibilitas keyboard. Tidak menghapus
+       focus ring; menambahkan visual yang konsisten. */
+    :focus-visible {
+        outline: var(--focus-ring-width) solid var(--color-focus-ring);
+        outline-offset: var(--focus-ring-offset);
+    }
+
+    /* Skip Link — DESIGN.md §32
+       Class tersedia untuk komponen Blade di fase berikutnya.
+       Muncul di atas segala elemen lain saat menerima fokus keyboard. */
+    .skip-link {
+        position: absolute;
+        inset-inline-start: var(--space-4);
+        top: var(--space-4);
+        z-index: var(--z-skip-link);
+        padding-block: var(--space-2);
+        padding-inline: var(--space-4);
+        background-color: var(--color-primary);
+        color: var(--color-on-primary);
+        border-radius: var(--radius-md);
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+        text-decoration: none;
+        transform: translateY(-200%);
+        transition: transform var(--duration-base) var(--ease-standard);
+    }
+
+    .skip-link:focus {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =============================================================================
+   REDUCED MOTION — DESIGN.md §33, MASTER.md §12
+   Proporsional: mempercepat durasi mendekati nol tanpa mematikan semua
+   feedback interaksi. Elemen tetap mencapai state akhirnya.
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

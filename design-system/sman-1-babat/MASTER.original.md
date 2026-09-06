@@ -1,233 +1,454 @@
 # Design System Master File
 
-> **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`.
-> If that file exists, its rules **override** this Master file.
-> If not, strictly follow the rules below.
+> **LOGIC:** When building a specific page, first check `design-system/sman-1-babat/pages/[page-name].md`.
+> If that file exists, its rules override this Master file.
+> If not, follow the rules below.
 
 ---
 
-**Project:** SMAN 1 Babat
-**Generated:** 2026-09-06 19:17:12
-**Category:** SaaS (General)
-**Design Dials:** Variance 5/10 (Balanced / Modern) | Motion 2/10 (Subtle) | Density 4/10 (Standard)
+**Project:** SMA Negeri 1 Babat Official Website  
+**Design Direction:** Modern Institutional Editorial  
+**Category:** Public Education Information Portal  
+**Source of Truth:** `docs/PRD.md`  
+**Stack Boundary:** Laravel Blade, Livewire where needed, Tailwind CSS, Filament admin, minimal JavaScript  
 
 ---
 
-## Global Rules
+## 1. Identity And Principles
 
-### Color Palette
+The public website represents SMA Negeri 1 Babat as an official school information portal and gateway to digital services. It must feel credible, clear, calm, public-facing, and human. The design should prioritize access to information over persuasion.
 
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Primary | `#2563EB` | `--color-primary` |
-| On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#3B82F6` | `--color-secondary` |
-| On Secondary | `#000000` | `--color-on-secondary` |
-| Accent/CTA | `#EA580C` | `--color-accent` |
-| On Accent/CTA | `#000000` | `--color-on-accent` |
-| Background | `#F8FAFC` | `--color-background` |
-| Foreground | `#1E293B` | `--color-foreground` |
-| Card | `#FFFFFF` | `--color-card` |
-| Card Foreground | `#1E293B` | `--color-card-foreground` |
-| Muted | `#E9EFF8` | `--color-muted` |
-| Muted Foreground | `#475569` | `--color-muted-foreground` |
-| Border | `#E2E8F0` | `--color-border` |
-| Destructive | `#DC2626` | `--color-destructive` |
-| On Destructive | `#FFFFFF` | `--color-on-destructive` |
-| Ring | `#2563EB` | `--color-ring` |
+Core principles:
 
-**Color Notes:** Trust blue + orange CTA contrast [Accent adjusted from #F97316]
+- **Official first:** school identity, navigation, announcements, and service access must be immediately clear.
+- **Information hierarchy over promotion:** the homepage is a public dashboard, not a commercial landing page.
+- **Editorial clarity:** news, announcements, agendas, achievements, and galleries should use readable editorial patterns.
+- **Authentic school presence:** real photos of school buildings, activities, students, teachers, events, and facilities are the main visual material.
+- **Mobile-first:** mobile layouts must prioritize urgent information, layanan digital, and current content.
+- **CMS-driven:** never design around hardcoded operational content that admins need to update.
+- **Hostinger-compatible:** avoid heavy frontend dependencies, complex animation libraries, and asset-heavy patterns.
+- **Accessible by default:** target WCAG 2.1 AA where practical for V1.
 
-### Typography
+The interface must not look like a SaaS landing page, startup homepage, generic agency template, or AI-generated bento layout.
 
-- **Heading Font:** Plus Jakarta Sans
-- **Body Font:** Plus Jakarta Sans
-- **Mood:** friendly, modern, saas, clean, approachable, professional
-- **Google Fonts:** [Plus Jakarta Sans + Plus Jakarta Sans](https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap)
+---
 
-**CSS Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-```
+## 2. Page Patterns
 
-### Spacing Variables
+### Institutional Homepage Pattern
 
-*Density: 4/10 — Standard*
+The homepage is a **public school dashboard** with a strong editorial rhythm. It should expose the most useful information quickly and give every major audience a clear path.
+
+Recommended order:
+
+1. Top bar with official contact, social links, and admin/login link if needed.
+2. Header and navigation with school identity.
+3. Hero with authentic school photo, official welcome, concise tagline, and two practical links: Profil Sekolah and Layanan Digital.
+4. Quick access for frequently used services.
+5. Pengumuman Penting.
+6. Layanan Digital.
+7. Berita Terbaru.
+8. Agenda Sekolah.
+9. Profil Singkat Sekolah.
+10. Prestasi Terbaru.
+11. Galeri Kegiatan.
+12. Statistik Sekolah if data is CMS-managed.
+13. Sambutan Kepala Sekolah.
+14. Footer with official address, contacts, navigation, and public links.
+
+Priority order on mobile:
+
+1. Pengumuman penting.
+2. Layanan Digital and quick access.
+3. Berita terbaru.
+4. Agenda terdekat.
+5. Profil and prestasi.
+
+### Interior Page Pattern
+
+Use consistent public page structure:
+
+- Page title with short context, not oversized marketing hero copy.
+- Breadcrumbs for pages three levels deep or more.
+- Main content area with readable line length.
+- Related content or sidebar only when useful.
+- Pagination for large collections.
+- Clear empty state for unpublished or unavailable content.
+
+### Detail Page Pattern
+
+Editorial content pages should use:
+
+- Category, date, author/source, and status metadata where relevant.
+- Featured image with descriptive alt text.
+- Body text with comfortable measure and heading hierarchy.
+- Related content after the article, not before the main content.
+- Share links only if implemented lightly and accessibly.
+
+---
+
+## 3. Color System
+
+Use blue, white, neutral tones, and limited gold/yellow accent as required by the PRD. Gold is for emphasis, active markers, and official highlights. It is not a commercial conversion color.
+
+| Role | Hex | CSS Variable | Usage |
+|---|---:|---|---|
+| Primary Blue | `#1D4E89` | `--color-primary` | Header, primary links, active nav, institutional identity |
+| Primary Blue Dark | `#12355B` | `--color-primary-dark` | Footer, high-emphasis text on light surfaces, deep header bands |
+| Primary Blue Light | `#E8F1FA` | `--color-primary-soft` | Soft section backgrounds and selected states |
+| Gold Accent | `#C9A227` | `--color-accent` | Limited highlights, active underline, important markers |
+| Gold Soft | `#FFF7D6` | `--color-accent-soft` | Important announcement background, subtle emphasis |
+| Background | `#FFFFFF` | `--color-background` | Main page background |
+| Surface | `#F8FAFC` | `--color-surface` | Quiet section bands |
+| Surface Raised | `#FFFFFF` | `--color-surface-raised` | Cards, panels, dropdowns |
+| Text Strong | `#0F172A` | `--color-text-strong` | Headings and primary text |
+| Text Body | `#334155` | `--color-text` | Body copy |
+| Text Muted | `#64748B` | `--color-text-muted` | Metadata and secondary copy |
+| Border | `#D9E2EC` | `--color-border` | Dividers, card borders, inputs |
+| Border Strong | `#B6C5D6` | `--color-border-strong` | Focus-adjacent dividers and structured tables |
+| Success | `#166534` | `--color-success` | Published/active status with text label |
+| Warning | `#92400E` | `--color-warning` | Important/limited status with text label |
+| Danger | `#B91C1C` | `--color-danger` | Errors and destructive actions |
+| Focus Ring | `#1D4E89` | `--color-ring` | Keyboard focus indicator |
+
+Rules:
+
+- Use white as the dominant background.
+- Use blue for official identity and navigation, not every decorative element.
+- Use gold sparingly. Avoid large gold blocks that reduce readability.
+- Avoid orange CTA colors, purple/pink gradients, glow effects, and decorative gradients.
+- Do not rely on color alone for status. Always include text.
+- Normal text must meet 4.5:1 contrast against its background.
+
+---
+
+## 4. Typography
+
+Typography should feel formal, readable, and modern without becoming corporate SaaS.
+
+Recommended default:
+
+- **Heading font:** Plus Jakarta Sans, Inter, or system sans.
+- **Body font:** Plus Jakarta Sans, Inter, or system sans.
+- **Fallback stack:** `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`.
+
+Type scale:
+
+| Token | Size | Line Height | Usage |
+|---|---:|---:|---|
+| `--text-xs` | `0.75rem` | `1rem` | Metadata, labels |
+| `--text-sm` | `0.875rem` | `1.25rem` | Secondary navigation, compact metadata |
+| `--text-base` | `1rem` | `1.625rem` | Body text |
+| `--text-lg` | `1.125rem` | `1.75rem` | Lead copy and intro text |
+| `--text-xl` | `1.25rem` | `1.75rem` | Card and section item title |
+| `--text-2xl` | `1.5rem` | `2rem` | Section heading |
+| `--text-3xl` | `1.875rem` | `2.25rem` | Page title on mobile |
+| `--text-4xl` | `2.25rem` | `2.5rem` | Homepage hero title on desktop |
+
+Rules:
+
+- Body text should be at least 16px.
+- Keep paragraph line length around 60 to 75 characters on desktop.
+- Avoid negative letter spacing.
+- Use `font-semibold` or `font-bold` for headings, not ultra-heavy display weights.
+- Metadata can be smaller, but must remain legible and high contrast.
+
+---
+
+## 5. Spacing And Containers
+
+Spacing uses a 4px/8px rhythm with clear hierarchy.
 
 | Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+|---|---:|---|
+| `--space-1` | `4px` | Fine gap |
+| `--space-2` | `8px` | Inline gap, metadata gap |
+| `--space-3` | `12px` | Compact component padding |
+| `--space-4` | `16px` | Base component padding |
+| `--space-5` | `20px` | Mobile section internal gap |
+| `--space-6` | `24px` | Card/list padding, mobile section gap |
+| `--space-8` | `32px` | Section grouping |
+| `--space-10` | `40px` | Medium section spacing |
+| `--space-12` | `48px` | Desktop section spacing |
+| `--space-16` | `64px` | Large homepage section spacing |
 
-### Shadow Depths
+Container rules:
 
-| Level | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
-
----
-
-## Component Specs
-
-### Buttons
-
-```css
-/* Primary Button */
-.btn-primary {
-  background: #EA580C;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background: transparent;
-  color: #2563EB;
-  border: 2px solid #2563EB;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-```
-
-### Cards
-
-```css
-.card {
-  background: #F8FAFC;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--shadow-md);
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-```
-
-### Inputs
-
-```css
-.input {
-  padding: 12px 16px;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 200ms ease;
-}
-
-.input:focus {
-  border-color: #2563EB;
-  outline: none;
-  box-shadow: 0 0 0 3px #2563EB20;
-}
-```
-
-### Modals
-
-```css
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  max-width: 500px;
-  width: 90%;
-}
-```
+- Mobile gutter: `16px`.
+- Tablet gutter: `24px`.
+- Desktop gutter: `32px`.
+- Main container max width: `72rem` to `80rem`.
+- Reading container max width: `42rem` to `48rem`.
+- Wide editorial/media container max width: `80rem`.
+- Avoid fixed pixel widths that cause horizontal overflow.
 
 ---
 
-## Style Guidelines
+## 6. Radius, Border, And Shadow
 
-**Style:** Minimalism & Swiss Style
+The design should use structure and spacing before heavy elevation.
 
-**Keywords:** Clean, simple, spacious, functional, white space, high contrast, geometric, sans-serif, grid-based, essential
+Radius:
 
-**Best For:** Enterprise apps, dashboards, documentation sites, SaaS platforms, professional tools
+- General maximum radius: `8px`.
+- Small controls and badges: `4px` to `6px`.
+- Images: `6px` to `8px`.
+- Avoid pill shapes unless the control is semantically a small status label or filter chip.
 
-**Key Effects:** Subtle hover (200-250ms), smooth transitions, sharp shadows if any, clear type hierarchy, fast loading
+Border:
 
-### Page Pattern
+- Prefer `1px` borders and dividers for cards, lists, tables, inputs, and navigation separation.
+- Use border color tokens, not arbitrary gray values per component.
+- Use left borders sparingly for important announcements or active navigation states.
 
-**Pattern Name:** Hero + Features + CTA
+Shadow:
 
-- **Conversion Strategy:** Deep CTA placement. For CTA label text, verify at least 4.5:1 against the button fill; use 7:1 only when the product explicitly targets AAA normal-text contrast. Keep focus and component boundaries independently visible. Disable hero parallax under reduced motion and render its static final state.
-- **CTA Placement:** Hero (sticky) + Bottom
-- **Section Order:** Hero with headline/image > Value prop > Key features (3-5) > CTA section > Footer
+| Token | Value | Usage |
+|---|---|---|
+| `--shadow-xs` | `0 1px 2px rgba(15, 23, 42, 0.04)` | Header or subtle raised surfaces |
+| `--shadow-sm` | `0 4px 12px rgba(15, 23, 42, 0.06)` | Dropdowns and occasional featured media |
 
----
+Rules:
 
-## Motion
-
-**Scroll Reveal** (Subtle) — Trigger: scroll (viewport enter) | Duration: 300-400ms | Easing: `power1.out`
-
-```js
-gsap.from(el, { opacity: 0, y: 12, duration: 0.35, ease: 'power1.out', scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reverse' } });
-```
-
-**Framework notes:** Requires the ScrollTrigger plugin registered once via gsap.registerPlugin(ScrollTrigger); Use matchMedia('(prefers-reduced-motion: reduce)') to skip non-essential motion and render the final state immediately
-
-- ✅ Keep the y offset small (8-16px) so it reads as a fade, not a slide
-- ❌ Don't reveal below-the-fold content needed for SEO/crawlers as invisible-by-default without a no-JS fallback
-- ⚡ toggleActions 'play none none reverse' avoids re-triggering on every scroll direction change
+- Most content blocks should use borders, not shadows.
+- Do not apply shadows to every card.
+- Avoid large blurred shadows, decorative glows, and floating-card page sections.
 
 ---
 
-## Anti-Patterns (Do NOT Use)
+## 7. Core UI Patterns
 
-- ❌ Excessive animation
-- ❌ Dark mode by default
+### Section Heading
 
-### Additional Forbidden Patterns
+Use a compact editorial heading:
 
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
-- ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
-- ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
-- ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
-- ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
+- Eyebrow or category label only when it adds orientation.
+- Heading text in 24px to 30px range.
+- Optional short description.
+- Optional "Lihat semua" link aligned to the section header.
+- Do not attach decorative icons to every heading.
+
+### Editorial List
+
+Use for news, achievements, documents, and content collections.
+
+Pattern:
+
+- Thumbnail with fixed aspect ratio when media exists.
+- Title, excerpt, category, date, and source metadata.
+- Text-first layout on small screens.
+- Avoid equal-height card grids for all editorial content.
+- For collections, prefer vertical lists on mobile and mixed feature/list layouts on desktop.
+
+### Announcement Pattern
+
+Announcements are high-priority public information.
+
+Pattern:
+
+- Important announcements may use `--color-accent-soft` background and a left border in `--color-accent`.
+- Include title, date range, short summary, attachment indicator if present, and clear status text.
+- Do not make urgency depend on color alone.
+- Keep important announcements near the top of the homepage.
+
+### Agenda Pattern
+
+Agenda items should be scannable by date.
+
+Pattern:
+
+- Date block with day, month, and year.
+- Title, time, location, category, and status.
+- Chronological ordering.
+- Upcoming events should be visually distinct from archived events with text labels.
+
+### Service Link Pattern
+
+Layanan Digital is a gateway, not a feature grid for marketing.
+
+Pattern:
+
+- Service name, short description, category, access type, status, and external URL affordance.
+- Use simple icon only when it improves recognition.
+- Status labels: Aktif, Maintenance, Musiman, Pengembangan, Arsip.
+- Service links must remain usable without hover.
+- External links should be clear and safe for users.
+
+### Buttons And Links
+
+- Primary actions are practical navigation links, not conversion CTAs.
+- Use filled blue for one primary action per area.
+- Use bordered or text links for secondary actions.
+- Minimum touch target: 44px height where practical.
+- Hover may change color or border. Avoid transform movement.
+- Focus state must be visible with ring or outline.
+
+### Forms And Search
+
+- Use visible labels.
+- Use helper text for unfamiliar fields.
+- Place validation errors near fields.
+- Search inputs should be easy to find on collection pages.
+- Do not use placeholder text as the only label.
 
 ---
 
-## Pre-Delivery Checklist
+## 8. Media And Authentic Photos
 
-Before delivering any UI code, verify:
+Photos are the primary visual asset for the public website.
 
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
-- [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
-- [ ] No horizontal scroll on mobile
+Rules:
+
+- Use authentic school photos whenever available.
+- Avoid generic stock photos, dark overlays that hide context, and purely atmospheric images.
+- Hero images should show school building, students, teachers, ceremonies, learning activities, or documented events.
+- Provide descriptive alt text for meaningful images.
+- Use empty alt only for decorative images.
+- Use consistent aspect ratios:
+  - News card: `16:9`.
+  - Gallery cover: `4:3` or `3:2`.
+  - Teacher/staff portrait: `4:5`.
+  - Hero: responsive wide crop with safe focal point.
+- Reserve image space with width/height or aspect-ratio to reduce layout shift.
+- Lazy-load non-priority images.
+- Do not show original unoptimized large images in public views.
+
+---
+
+## 9. Responsive Behavior
+
+Mobile-first behavior:
+
+- Core navigation must be reachable and clear.
+- Prioritize announcements, service access, latest news, and agenda.
+- Use vertical lists before multi-column grids.
+- Keep touch targets at least 44px high where practical.
+- Avoid horizontal scrolling.
+- Long titles and URLs must wrap safely.
+
+Desktop behavior:
+
+- Use larger containers and multi-column editorial layouts only where they improve scanning.
+- Avoid excessive whitespace that hides important public information below the fold.
+- Keep sidebars secondary and optional.
+- Do not turn the homepage into a marketing funnel.
+
+Breakpoints to verify:
+
+- 375px small phone.
+- 768px tablet.
+- 1024px laptop.
+- 1440px desktop.
+
+---
+
+## 10. Accessibility
+
+Target WCAG 2.1 AA where practical for V1.
+
+Required:
+
+- One clear `h1` per page.
+- Sequential heading hierarchy.
+- Skip link to main content.
+- Visible focus state for links, buttons, menu triggers, inputs, and cards that are links.
+- Text contrast at least 4.5:1 for normal text.
+- Non-text UI contrast at least 3:1 for meaningful boundaries and icons.
+- Do not remove outline without replacing it with a visible focus style.
+- Link text must describe destination.
+- Images need meaningful alt text when informative.
+- Decorative icons must be hidden from assistive tech.
+- Icon-only controls must have accessible names.
+- Forms must use labels and clear error text.
+- Status must use text, not color alone.
+- Keyboard users must be able to open, navigate, and close menus.
+- Moving or auto-rotating content must have a pause/stop control, or be avoided.
+
+---
+
+## 11. Motion
+
+Motion should be minimal and functional.
+
+Allowed:
+
+- Color, border, and opacity transitions for hover/focus/active states.
+- Menu open/close transition under 200ms.
+- Disclosure transitions that clarify state.
+
+Rules:
+
+- Respect `prefers-reduced-motion`.
+- Do not hide SEO-critical content behind JavaScript animation.
+- Avoid scroll reveal as a default pattern.
+- Avoid animation libraries for V1 unless explicitly approved.
+- Do not use GSAP for the public website baseline.
+- Do not use parallax, decorative motion, glow pulses, or animated backgrounds.
+
+---
+
+## 12. Anti-AI-Slop Rules
+
+Do not use:
+
+- SaaS category framing.
+- Conversion-oriented CTA language.
+- Sticky CTA or bottom CTA patterns.
+- Hero + Features + CTA as the global page pattern.
+- Pricing sections.
+- Testimonials or commercial social proof.
+- Fake statistics.
+- Generic promotional copy.
+- Generic bento grids.
+- Glassmorphism.
+- Neumorphism.
+- Backdrop blur.
+- Decorative glow.
+- Purple/pink gradients.
+- Orange conversion CTA accent.
+- Cards around every piece of content.
+- Large radius beyond 8px for normal surfaces.
+- Heavy or blurry shadows.
+- Decorative icons on every title.
+- Emoji as icons.
+- Decorative animation.
+- Generic stock photos.
+
+When in doubt, choose a quieter, clearer, more official editorial treatment.
+
+---
+
+## 13. Implementation Notes For Future Frontend Work
+
+These notes are constraints for future implementation, not permission to build in this step.
+
+- Use Blade layouts and reusable Blade components for repeated public UI.
+- Keep JavaScript minimal. Alpine or Livewire interactions are acceptable only when needed.
+- Do not introduce React, Vue, Next.js, or SPA architecture.
+- Keep public content CMS-driven where admins need updates.
+- Use semantic Tailwind config tokens before repeating raw hex values in views.
+- Keep public UI independent from Filament styling.
+- Do not place heavy business logic in Blade templates.
+
+---
+
+## 14. Pre-Delivery Checklist
+
+Before any public UI is considered ready:
+
+- [ ] Matches official school portal purpose from `docs/PRD.md`.
+- [ ] Does not look like SaaS, startup, or commercial landing page.
+- [ ] Uses blue, white, neutral, and limited gold accent.
+- [ ] Uses real school media or clearly marked placeholders during development.
+- [ ] No fake statistics or invented school claims.
+- [ ] Homepage follows information-priority structure.
+- [ ] Mobile layout exposes announcements and services early.
+- [ ] Text is readable at 375px width.
+- [ ] No horizontal overflow.
+- [ ] Touch targets are practical on mobile.
+- [ ] Focus states are visible.
+- [ ] Images include correct alt behavior.
+- [ ] Lists, announcements, agenda, and service links are scannable.
+- [ ] Border and shadow use is restrained.
+- [ ] Motion is minimal and respects reduced motion.
+- [ ] Content that should be CMS-driven is not hardcoded in final implementation.

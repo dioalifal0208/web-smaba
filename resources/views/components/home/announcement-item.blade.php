@@ -7,7 +7,7 @@
 ])
 
 @php
-    $dateValue = $date ? \Illuminate\Support\Carbon::parse($date) : null;
+    $dateValue = $date ? \Illuminate\Support\Carbon::parse($date)->timezone('Asia/Jakarta') : null;
     $hasUrl = filled($url) && ! in_array($url, ['#', 'javascript:void(0)'], true);
 @endphp
 

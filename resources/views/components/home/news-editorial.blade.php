@@ -6,7 +6,7 @@
 @php
     $stories = collect($stories);
     $leadDate = data_get($lead, 'published_at', data_get($lead, 'date'));
-    $leadDateValue = $leadDate ? \Illuminate\Support\Carbon::parse($leadDate) : null;
+    $leadDateValue = $leadDate ? \Illuminate\Support\Carbon::parse($leadDate)->timezone('Asia/Jakarta') : null;
     $leadUrl = data_get($lead, 'url');
     $hasLeadUrl = filled($leadUrl) && ! in_array($leadUrl, ['#', 'javascript:void(0)'], true);
 @endphp
@@ -60,7 +60,7 @@
             @foreach ($stories as $story)
                 @php
                     $storyDate = data_get($story, 'published_at', data_get($story, 'date'));
-                    $storyDateValue = $storyDate ? \Illuminate\Support\Carbon::parse($storyDate) : null;
+                    $storyDateValue = $storyDate ? \Illuminate\Support\Carbon::parse($storyDate)->timezone('Asia/Jakarta') : null;
                     $storyUrl = data_get($story, 'url');
                     $hasStoryUrl = filled($storyUrl) && ! in_array($storyUrl, ['#', 'javascript:void(0)'], true);
                 @endphp

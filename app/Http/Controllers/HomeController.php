@@ -14,12 +14,12 @@ class HomeController extends Controller
             ->published()
             ->latest('published_at')
             ->limit(4)
-            ->get(['title', 'excerpt', 'published_at'])
+            ->get(['title', 'slug', 'excerpt', 'published_at'])
             ->map(fn (Article $article): array => [
                 'title' => $article->title,
                 'excerpt' => $article->excerpt,
                 'published_at' => $article->published_at,
-                'url' => null,
+                'url' => route('articles.show', ['slug' => $article->slug]),
             ]);
 
         $announcements = Announcement::query()
@@ -28,13 +28,13 @@ class HomeController extends Controller
             ->where('is_important', true)
             ->latest('published_at')
             ->limit(3)
-            ->get(['title', 'excerpt', 'published_at', 'is_important'])
+            ->get(['title', 'slug', 'excerpt', 'published_at', 'is_important'])
             ->map(fn (Announcement $announcement): array => [
                 'title' => $announcement->title,
                 'excerpt' => $announcement->excerpt,
                 'date' => $announcement->published_at,
                 'is_important' => $announcement->is_important,
-                'url' => null,
+                'url' => route('announcements.show', ['slug' => $announcement->slug]),
             ]);
 
         return view('pages.home', compact('announcements', 'news'));

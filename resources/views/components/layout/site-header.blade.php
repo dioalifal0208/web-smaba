@@ -51,6 +51,8 @@
                 >
                     Beranda
                 </x-layout.nav-link>
+                <x-layout.nav-link :href="route('articles.index')" :active="request()->routeIs('articles.*')">Berita</x-layout.nav-link>
+                <x-layout.nav-link :href="route('announcements.index')" :active="request()->routeIs('announcements.*')">Pengumuman</x-layout.nav-link>
 
                 {{-- Link berikut akan diaktifkan di Phase 3 saat route tersedia --}}
                 {{-- <x-layout.nav-link href="{{ route('profile.index') }}">Profil</x-layout.nav-link> --}}
@@ -114,6 +116,9 @@
                         >
                             Beranda
                         </a>
+
+                        <a href="{{ route('articles.index') }}" class="block px-4 py-3 text-sm font-500 text-on-primary hover:bg-white/10 transition-colors duration-fast focus-visible:outline-none focus-visible:bg-white/10 {{ request()->routeIs('articles.*') ? 'font-700 bg-white/5' : '' }}" @if(request()->routeIs('articles.*')) aria-current="page" @endif>Berita</a>
+                        <a href="{{ route('announcements.index') }}" class="block px-4 py-3 text-sm font-500 text-on-primary hover:bg-white/10 transition-colors duration-fast focus-visible:outline-none focus-visible:bg-white/10 {{ request()->routeIs('announcements.*') ? 'font-700 bg-white/5' : '' }}" @if(request()->routeIs('announcements.*')) aria-current="page" @endif>Pengumuman</a>
 
                         {{-- Link Phase 3+ dikomentari --}}
                         {{-- <a href="{{ route('profile.index') }}" …>Profil</a> --}}

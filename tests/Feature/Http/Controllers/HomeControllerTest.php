@@ -202,4 +202,17 @@ class HomeControllerTest extends TestCase
         $this->assertSame('/', $route->uri());
         $this->assertSame(HomeController::class.'@index', $route->getActionName());
     }
+
+    public function test_homepage_uses_detail_urls_for_published_content(): void
+    {
+        $article = Article::factory()->published()->create(['slug' => 'berita-ditautkan']);
+        $announcement = Announcement::factory()->published()->important()->create(['slug' => 'pengumuman-ditautkan']);
+
+        $this->get(route('home'))
+            ->assertSee(route('articles.show', $article->slug))
+            ->assertSee(route('announcements.show', $announcement->slug))
+            ->assertDontSee('href="#"', false)
+            ->assertDontSee('href=""', false)
+            ->assertDontSee("href=''", false);
+    }
 }
